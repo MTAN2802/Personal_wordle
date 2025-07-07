@@ -1,0 +1,44 @@
+/*Overall layout*/
+.playarea{
+    display: flex;
+    flex-direction: column;
+}
+
+/*Header*/
+header{
+    justify-items: center;
+}
+.options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.options div button{
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: large;
+}
+
+.options div button:hover{
+    background-color: #5d6d7e;
+    color:aliceblue;
+}
+
+.tiles{
+    display:grid;
+    grid-template-areas: 
+    "one two three four five"
+    "six seven eight nine ten"
+    "eleven twelve thirteen fourteen fifteen"
+    "sixteen seventeen eighteen nineteen twenty"
+    "twentyone twentytwo twentythree twentyfour twentyfive"
+    "twentysix twentyseven twentyeight twentynine thirty";
+}
+
+.tiles div{
+    display: flex;
+    border: black;
+    height:20px;
+}
