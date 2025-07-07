@@ -8,6 +8,7 @@
 header{
     justify-items: center;
 }
+
 .options{
     display: flex;
     flex-direction: row;
@@ -26,8 +27,11 @@ header{
     color:aliceblue;
 }
 
+/*Game tiles section*/
 .tiles{
-    display:grid;
+    display: grid;
+    margin: 20px 0;
+    justify-content: center;
     grid-template-areas: 
     "one two three four five"
     "six seven eight nine ten"
@@ -35,10 +39,53 @@ header{
     "sixteen seventeen eighteen nineteen twenty"
     "twentyone twentytwo twentythree twentyfour twentyfive"
     "twentysix twentyseven twentyeight twentynine thirty";
+    grid-gap: 5px;
 }
 
 .tiles div{
     display: flex;
-    border: black;
-    height:20px;
+    border: solid black;
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.tiles div p{
+    font-weight: bold;
+    font-size: 28px;
+}
+
+/*Keyboard section*/
+.keyboard{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.level1, .level2, .level3{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+}
+
+.level1 div, .level2 div, .level3 div{
+    display: flex;
+    border: solid black;
+    height: 60px;
+    width: 45px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.level1 div p, .level2 div p, .level3 div p{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#enter{
+    font-size: 16px;
 }
