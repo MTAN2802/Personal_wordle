@@ -1,4 +1,8 @@
 /*Overall layout*/
+*{
+    background-color: black;
+    color: white;
+}
 .playarea{
     display: flex;
     flex-direction: column;
@@ -9,22 +13,69 @@ header{
     justify-items: center;
 }
 
-.options{
+/*Opening page*/
+#openingpage{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+#openingpage div{
+    background-color: white;
+    color: black;
+    margin: 10px 0;
+    font-family: 'Franklin Gothic', 'Helvetica';
+}
+
+#heading{
+    font-weight: bold;
+    font-size: 72px;
+    
+}
+
+#description{
+    font-size: 36px;
+}
+
+#start{
+    font-size: 24px;
+    padding: 10px 40px;
+    border-radius: 10px;
+}
+
+#today{
+    font-size: 16px;
+}
+
+
+.wordoptions{
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.options div button{
+.wordoptions div button{
     margin: 0 10px;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: large;
+    background-color: grey;
 }
 
-.options div button:hover{
+.wordoptions div button:hover, .level1 div:hover, .level2 div:hover, .level3 div:hover, #start:hover{
     background-color: #5d6d7e;
-    color:aliceblue;
+}
+
+.wordoptions div button:active, .level1 div:active, .level2 div:active, .level3 div:active, #start:active{
+    background-color: #5d86b3;
 }
 
 /*Game tiles section*/
@@ -44,10 +95,9 @@ header{
 
 .tiles div{
     display: flex;
-    border: solid black;
+    border: solid gray;
     height: 60px;
     width: 60px;
-    background-color: white;
     justify-content: center;
     align-items: center;
 }
@@ -73,15 +123,13 @@ header{
 
 .level1 div, .level2 div, .level3 div{
     display: flex;
-    border: solid black;
+    background-color: grey;
+    border-radius: 5px;
     height: 60px;
     width: 45px;
     justify-content: center;
     align-items: center;
     margin: 5px;
-}
-
-.level1 div p, .level2 div p, .level3 div p{
     font-weight: bold;
     font-size: 20px;
 }
