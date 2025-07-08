@@ -68,15 +68,18 @@ function howClose(){
     let word = Object.values(wordInPlay);
     for (let i=0; i < guessedWord.length; i++){
         if (Object.values(wordInPlay).includes(guessedWord[i]) && guessedWord[i] === wordInPlay[i]){
-            document.getElementById(currTile).style.backgroundColor = 'green'
-            document.getElementById(currTile).style.borderColor = 'green'
-            word = word.filter(letter => letter !== guessedWord[i])
+            document.getElementById(currTile).style.backgroundColor = 'green';
+            document.getElementById(currTile).style.borderColor = 'green';
+            document.getElementById(guessedWord[i]).style.backgroundColor = 'green';
+            word = word.filter(letter => letter !== guessedWord[i]);
         }
         else if (Object.values(wordInPlay).includes(guessedWord[i])){
             obj[currTile] = guessedWord[i]
+            document.getElementById(guessedWord[i]).style.backgroundColor = '#d1bf4b';
         }
         else{
            document.getElementById(currTile).style.backgroundColor = 'gray' 
+           document.getElementById(guessedWord[i]).style.backgroundColor = '#414542';
         }
         currTile++
     }
