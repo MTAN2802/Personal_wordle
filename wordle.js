@@ -5,19 +5,24 @@ const words = data.words;
 const currentDate = new Date();
 document.getElementById("today").innerHTML = currentDate.toLocaleDateString();
 
-let wordInPlay
+let wordInPlay = {}
 function setWord(){
     const totalWords = 5757;
     const randomNo = Math.floor(Math.random() * totalWords);
-    wordInPlay = words[randomNo];
-};
+    for (let i = 0; i < words[randomNo].length; i++){
+        wordInPlay[i] = words[randomNo][i];
+    }
+}
 
 function startGame(){
+    if (document.getElementById("openingpage").style.opacity !== '0'){
+        setWord()
+    }
     document.getElementById("openingpage").style.opacity = 0;
+    console.log(wordInPlay)
 }
 
 document.getElementById("start").addEventListener("click", startGame)
-document.getElementById("start").addEventListener("click", setWord)
 
 //Playing the game
 const validKeys = ['Q','W','E','R','T','Y','U','I','O','P',
@@ -28,17 +33,47 @@ const lastLetter = {1: 5, 2: 10, 3: 15, 4: 20, 5: 25, 6: 30} //Key represents Gu
 const firstLetter = {1: 1, 2: 6, 3: 11, 4: 16, 5: 21, 6: 26}
 let currentGuess = 1;
 let currentLetter = 1;
+let guessedWord = []
 
 function enterOrRemoveLetter(e){
-    document.getElementById(currentLetter).innerHTML
+    //if pressed key is valid and the current tile is not more than the last possible tile and the tile is empty
     if (validKeys.includes(e.key.toUpperCase()) && currentLetter <= lastLetter[currentGuess.toString()] && document.getElementById(currentLetter).innerHTML === ''){
         document.getElementById(currentLetter).innerHTML = e.key.toUpperCase()
         currentLetter++
+        guessedWord.push(e.key.toLowerCase())
     }
-    else if (e.key.toUpperCase() === 'BACKSPACE' && currentLetter >= firstLetter[currentGuess.toString()]){
+    else if (e.key === 'Backspace' && currentLetter >= firstLetter[currentGuess.toString()]){
         currentLetter !== firstLetter[currentGuess.toString()] ? currentLetter-- : null;
-        document.getElementById(currentLetter).innerHTML = ''
+        guessedWord.pop()
+        document.getElementById(currentLetter).innerHTML = '';
     }
 }
 
+function guessWord(e){
+    if (e.key === 'Enter' && guessedWord.length === 5){
+            if (!words.includes(guessedWord.join(''))){
+                alert('Word not in list');
+            }
+            else{
+                howClose();
+                guessedWord = [];
+            }
+    }
+}
+
+function howClose(){
+    let curr = firstLetter[currentGuess.toString()]
+    for (let i=0; i < guessedWord.length; i++){
+        if (Object.values(wordInPlay).includes(guessedWord[i]) && guessedWord[i] === wordInPlay[i]){
+            document.getElementById(curr).style.backgroundColor = 'green'
+        }
+        else if (Object.values(wordInPlay).includes(guessedWord[i])){
+            document.getElementById(curr).style.backgroundColor = 'yellow'
+        }
+        curr++
+    }
+    currentGuess++
+}
+
 document.addEventListener('keydown', enterOrRemoveLetter)
+document.addEventListener('keydown', guessWord)
