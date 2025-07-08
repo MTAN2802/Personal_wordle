@@ -26,6 +26,7 @@ header{
     background-color: white;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 #openingpage div{
@@ -100,9 +101,6 @@ header{
     width: 60px;
     justify-content: center;
     align-items: center;
-}
-
-.tiles div p{
     font-weight: bold;
     font-size: 28px;
 }
@@ -134,6 +132,27 @@ header{
     font-size: 20px;
 }
 
+#enter, #backspace{
+    width: 80px;
+}
+
 #enter{
     font-size: 16px;
+}
+
+@media only screen and (max-width: 1600px){
+    .tiles div{
+        height: 45px;
+        width: 45px;
+    }
+
+    .level1 div, .level2 div, .level3 div{
+        height: 50px;
+        width: 35px;
+        margin: 3px;
+    }
+
+    #enter, #backspace{
+    width: 60px;
+    }
 }

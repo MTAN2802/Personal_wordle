@@ -19,6 +19,7 @@ function startGame(){
         setWord()
     }
     document.getElementById("openingpage").style.opacity = 0;
+    document.getElementById("openingpage").style.zIndex = -10;
     console.log(wordInPlay)
 }
 
@@ -62,15 +63,30 @@ function guessWord(e){
 }
 
 function howClose(){
-    let curr = firstLetter[currentGuess.toString()]
+    let currTile = firstLetter[currentGuess.toString()]
+    let obj = {};
+    let word = Object.values(wordInPlay);
     for (let i=0; i < guessedWord.length; i++){
         if (Object.values(wordInPlay).includes(guessedWord[i]) && guessedWord[i] === wordInPlay[i]){
-            document.getElementById(curr).style.backgroundColor = 'green'
+            document.getElementById(currTile).style.backgroundColor = 'green'
+            document.getElementById(currTile).style.borderColor = 'green'
+            word = word.filter(letter => letter !== guessedWord[i])
         }
         else if (Object.values(wordInPlay).includes(guessedWord[i])){
-            document.getElementById(curr).style.backgroundColor = 'yellow'
+            obj[currTile] = guessedWord[i]
         }
-        curr++
+        else{
+           document.getElementById(currTile).style.backgroundColor = 'gray' 
+        }
+        currTile++
+    }
+
+    for (const key in obj){
+        if (word.includes(obj[key])){
+            document.getElementById(key).style.backgroundColor = '#d1bf4b';
+            document.getElementById(key).style.borderColor = '#d1bf4b';
+        }
+        
     }
     currentGuess++
 }
