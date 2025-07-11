@@ -42,20 +42,28 @@ function enterOrRemoveLetter(event){
         document.getElementById(currentLetter).innerHTML = event.toUpperCase()
         currentLetter++
         guessedWord.push(event.toLowerCase())
-        console.log(guessedWord)
+
     }
     else if (event === 'Backspace' && currentLetter >= firstLetter[currentGuess.toString()]){
         currentLetter !== firstLetter[currentGuess.toString()] ? currentLetter-- : null;
         guessedWord.pop()
         document.getElementById(currentLetter).innerHTML = '';
-        console.log(guessedWord)
+
     }
 }
 
 function guessWord(event){
+    const wordArray = Object.values(wordInPlay);
+    const isEqual = guessedWord.length === wordArray.length &&
+                guessedWord.every((letter, i) => letter === wordArray[i]);
     if (event === 'Enter' && guessedWord.length === 5){
             if (!words.includes(guessedWord.join(''))){
                 alert('Word not in list');
+            }
+            else if (isEqual){
+                console.log('won')
+                document.getElementById('playarea').style.zIndex = -20;
+                document.getElementById('endpage').style.zIndex = 0;
             }
             else{
                 howClose();

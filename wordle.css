@@ -3,7 +3,7 @@
     background-color: black;
     color: white;
 }
-.playarea{
+#playarea{
     display: flex;
     flex-direction: column;
 }
@@ -14,7 +14,7 @@ header{
 }
 
 /*Opening page*/
-#openingpage{
+#openingpage, #endpage{
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -22,11 +22,19 @@ header{
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 1;
-    background-color: white;
     justify-content: center;
     align-items: center;
+    
+}
+
+#openingpage{
+    opacity: 1; /*Rest of the screen will be white while playarea will be black*/
+    background-color: white;
     z-index: 1;
+}
+
+#endpage{
+    z-index: -20;
 }
 
 #openingpage div{
