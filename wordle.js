@@ -28,30 +28,32 @@ document.getElementById("start").addEventListener("click", startGame)
 //Playing the game
 const validKeys = ['Q','W','E','R','T','Y','U','I','O','P',
     'A','S','D','F','G','H','J','K','L',
-    'Z','X','C','V','B','N','M',
+    'Z','X','C','V','B','N','M'
 ]
 const lastLetter = {1: 5, 2: 10, 3: 15, 4: 20, 5: 25, 6: 30} //Key represents Guess they are on, value is the last letter to enter to guess
 const firstLetter = {1: 1, 2: 6, 3: 11, 4: 16, 5: 21, 6: 26}
 let currentGuess = 1;
 let currentLetter = 1;
-let guessedWord = []
+let guessedWord = [];
 
-function enterOrRemoveLetter(e){
+function enterOrRemoveLetter(event){
     //if pressed key is valid and the current tile is not more than the last possible tile and the tile is empty
-    if (validKeys.includes(e.key.toUpperCase()) && currentLetter <= lastLetter[currentGuess.toString()] && document.getElementById(currentLetter).innerHTML === ''){
-        document.getElementById(currentLetter).innerHTML = e.key.toUpperCase()
+    if (validKeys.includes(event.toUpperCase()) && currentLetter <= lastLetter[currentGuess.toString()] && document.getElementById(currentLetter).innerHTML === ''){
+        document.getElementById(currentLetter).innerHTML = event.toUpperCase()
         currentLetter++
-        guessedWord.push(e.key.toLowerCase())
+        guessedWord.push(event.toLowerCase())
+        console.log(guessedWord)
     }
-    else if (e.key === 'Backspace' && currentLetter >= firstLetter[currentGuess.toString()]){
+    else if (event === 'Backspace' && currentLetter >= firstLetter[currentGuess.toString()]){
         currentLetter !== firstLetter[currentGuess.toString()] ? currentLetter-- : null;
         guessedWord.pop()
         document.getElementById(currentLetter).innerHTML = '';
+        console.log(guessedWord)
     }
 }
 
-function guessWord(e){
-    if (e.key === 'Enter' && guessedWord.length === 5){
+function guessWord(event){
+    if (event === 'Enter' && guessedWord.length === 5){
             if (!words.includes(guessedWord.join(''))){
                 alert('Word not in list');
             }
@@ -70,16 +72,16 @@ function howClose(){
         if (Object.values(wordInPlay).includes(guessedWord[i]) && guessedWord[i] === wordInPlay[i]){
             document.getElementById(currTile).style.backgroundColor = 'green';
             document.getElementById(currTile).style.borderColor = 'green';
-            document.getElementById(guessedWord[i]).style.backgroundColor = 'green';
+            document.getElementById(guessedWord[i].toUpperCase()).style.backgroundColor = 'green';
             word = word.filter(letter => letter !== guessedWord[i]);
         }
         else if (Object.values(wordInPlay).includes(guessedWord[i])){
             obj[currTile] = guessedWord[i]
-            document.getElementById(guessedWord[i]).style.backgroundColor = '#d1bf4b';
+            document.getElementById(guessedWord[i].toUpperCase()).style.backgroundColor = '#d1bf4b';
         }
         else{
            document.getElementById(currTile).style.backgroundColor = 'gray' 
-           document.getElementById(guessedWord[i]).style.backgroundColor = '#414542';
+           document.getElementById(guessedWord[i].toUpperCase()).style.backgroundColor = '#414542';
         }
         currTile++
     }
@@ -92,7 +94,26 @@ function howClose(){
         
     }
     currentGuess++
-}
+};
 
-document.addEventListener('keydown', enterOrRemoveLetter)
-document.addEventListener('keydown', guessWord)
+//Keyboard events
+document.addEventListener('keydown', (e) => {
+    enterOrRemoveLetter(e.key)
+    guessWord(e.key)
+});
+
+//Click events
+for (let letter of validKeys){
+    document.getElementById(letter).addEventListener('click', () =>{
+        enterOrRemoveLetter(letter)
+    })
+};
+document.getElementById('Enter').addEventListener('click', () =>{
+    guessWord('Enter')
+});
+document.getElementById('Backspace').addEventListener('click', () => {
+    enterOrRemoveLetter('Backspace')
+});
+
+
+

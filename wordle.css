@@ -97,6 +97,7 @@ header{
 .tiles div{
     display: flex;
     border: solid gray;
+    background-color: black;
     height: 60px;
     width: 60px;
     justify-content: center;
@@ -132,7 +133,7 @@ header{
     font-size: 20px;
 }
 
-#enter, #backspace{
+#Enter, #Backspace{
     width: 80px;
 }
 
@@ -140,7 +141,7 @@ header{
     font-size: 16px;
 }
 
-@media only screen and (max-width: 1600px){
+@media only screen and (max-width: 1300px){
     .tiles div{
         height: 45px;
         width: 45px;
@@ -152,12 +153,13 @@ header{
         margin: 3px;
     }
 
-    #enter, #backspace{
+    #Enter, #Backspace{
     width: 60px;
+    font-size: 17px;
     }
 }
 
-@media only screen and (max-width: 1300px){
+@media only screen and (max-width: 900px){
     .tiles div{
         height: 40px;
         width: 40px;
@@ -173,7 +175,8 @@ header{
         margin: 3px;
     }
 
-    #enter, #backspace{
+    #Enter, #Backspace{
     width: 50px;
+    font-size: 14px;
     }
 }
