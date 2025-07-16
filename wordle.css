@@ -28,13 +28,9 @@ header{
 }
 
 #openingpage{
-    opacity: 1; /*Rest of the screen will be white while playarea will be black*/
+    opacity: 1; /*Rest of the screen will be white while playarea will be black if not included*/
     background-color: white;
     z-index: 1;
-}
-
-#endpage{
-    z-index: -20;
 }
 
 #openingpage div{
@@ -148,6 +144,42 @@ header{
 #enter{
     font-size: 16px;
 }
+
+/*End page details*/
+#endpage{
+    z-index: 20;
+}
+
+#grid{
+    display: grid;
+    grid-template-rows: 75px 75px 200px 75px 200px;
+}
+
+#grid div{
+    align-content: center;
+}
+
+#grid h1{
+    font-size: 48px;
+    text-align: center;
+    margin: 0;
+}
+
+#grid h3{
+    font-size: 36px;
+    margin: 0;
+}
+
+
+#stats{
+    display: grid;
+    grid-template-areas: 
+    "playednum winnum currentstreaknum maxstreaknum"
+    "played win currentstreak maxstreak";
+}
+
+
+
 
 @media only screen and (max-width: 1300px){
     .tiles div{
