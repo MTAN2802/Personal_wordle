@@ -152,7 +152,7 @@ header{
 
 #grid{
     display: grid;
-    grid-template-rows: 75px 75px 200px 75px 200px;
+    grid-template-rows: 75px 75px 200px 75px 200px 50px;
 }
 
 #grid div{
@@ -161,7 +161,6 @@ header{
 
 #grid h1{
     font-size: 48px;
-    text-align: center;
     margin: 0;
 }
 
