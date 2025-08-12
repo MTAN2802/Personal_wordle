@@ -172,12 +172,18 @@ header{
 
 #stats{
     display: grid;
+    width: 100%;
     grid-template-areas: 
     "playednum winnum currentstreaknum maxstreaknum"
     "played win currentstreak maxstreak";
+    justify-items: center;
+    grid-template-columns: repeat(4, 80px);
+    grid-column-gap: 10px;
 }
 
-
+#stats p{
+    font-size: 24px;
+}
 
 
 @media only screen and (max-width: 1300px){
